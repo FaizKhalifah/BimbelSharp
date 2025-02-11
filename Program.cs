@@ -1,4 +1,7 @@
 
+using Bimbelsharp.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace Bimbelsharp
 {
     public class Program
@@ -6,6 +9,11 @@ namespace Bimbelsharp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            //add connection string
+            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+                   ?? throw new InvalidOperationException("Connection string 'Default Connection' not found.")));
+
 
             // Add services to the container.
 
