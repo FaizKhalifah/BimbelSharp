@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bimbelsharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+204eec4a6f28d148a68641be4d355e9eec09f815")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59046366ff16a679781f91d264e7d8a05c34b690")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bimbelsharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bimbelsharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
