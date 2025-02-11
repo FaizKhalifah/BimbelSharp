@@ -1,4 +1,4 @@
-
+using Bimbelsharp.Area.CourseArea.Service;
 using Bimbelsharp.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,21 +10,22 @@ namespace Bimbelsharp
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //add connection string
-            builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
-                   ?? throw new InvalidOperationException("Connection string 'Default Connection' not found.")));
+            // Add connection string
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
-
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // Add services to the container
+            builder.Services.AddControllers(); // Pastikan hanya ada satu ini
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Register repository
+            builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
+            // Configure middleware
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -32,11 +33,8 @@ namespace Bimbelsharp
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
-
-            app.MapControllers();
+            app.MapControllers(); // Pastikan ini tetap ada
 
             app.Run();
         }

@@ -1,1 +1,81 @@
-[]
+[
+  {
+    "ContainingType": "Bimbelsharp.Area.CourseArea.CourseController",
+    "Method": "GetAllCourses",
+    "RelativePath": "api/course",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bimbelsharp.Area.CourseArea.CourseController",
+    "Method": "AddCourse",
+    "RelativePath": "api/course",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "course",
+        "Type": "Bimbelsharp.Data.Model.Entities.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bimbelsharp.Area.CourseArea.CourseController",
+    "Method": "GetCourseById",
+    "RelativePath": "api/course/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bimbelsharp.Area.CourseArea.CourseController",
+    "Method": "updateCourse",
+    "RelativePath": "api/course/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "course",
+        "Type": "Bimbelsharp.Data.Model.Entities.Course",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Bimbelsharp.Area.CourseArea.CourseController",
+    "Method": "deleteCourse",
+    "RelativePath": "api/course/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

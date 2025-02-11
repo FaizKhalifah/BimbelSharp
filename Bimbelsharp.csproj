@@ -20,8 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Area\Admin\" />
+    <Folder Include="Area\Student\" />
     <Folder Include="Area\Teacher\" />
+    <Folder Include="Controllers\" />
     <Folder Include="Data\Model\DTO\" />
+    <Folder Include="Utilites\" />
   </ItemGroup>
 
 </Project>
