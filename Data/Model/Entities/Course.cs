@@ -2,7 +2,7 @@
 
 namespace Bimbelsharp.Data.Model.Entities
 {
-    public class Course
+    public class Course:BaseModel
     {
         public string CourseName { get; set; }
         public string Type { get; set; }
