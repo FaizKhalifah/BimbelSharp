@@ -1,6 +1,6 @@
 ﻿namespace Bimbelsharp.Data.Model
 {
-    public class UserBase:BaseModel
+    public class User:BaseModel
     {
         public string FullName { get; set; }
         public string Email { get; set; }

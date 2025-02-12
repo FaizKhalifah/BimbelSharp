@@ -7,5 +7,10 @@ namespace Bimbelsharp.Data.Model.Entities
         
         public int Batch { get; set; }
         public List<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
+
+        public Student()
+        {
+            Role = Role.Student;
+        }
     }
 }

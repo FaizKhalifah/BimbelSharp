@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Area\Admin\**" />
+    <Compile Remove="Area\Student\**" />
+    <Compile Remove="Area\Teacher\**" />
+    <Content Remove="Area\Admin\**" />
+    <Content Remove="Area\Student\**" />
+    <Content Remove="Area\Teacher\**" />
+    <EmbeddedResource Remove="Area\Admin\**" />
+    <EmbeddedResource Remove="Area\Student\**" />
+    <EmbeddedResource Remove="Area\Teacher\**" />
+    <None Remove="Area\Admin\**" />
+    <None Remove="Area\Student\**" />
+    <None Remove="Area\Teacher\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.1">
@@ -24,12 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Area\Admin\" />
-    <Folder Include="Area\Student\" />
-    <Folder Include="Area\Teacher\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Data\Model\DTO\" />
-    <Folder Include="Utilites\" />
   </ItemGroup>
 
 </Project>

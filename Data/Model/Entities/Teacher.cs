@@ -10,5 +10,10 @@ namespace Bimbelsharp.Data.Model.Entities
        
 
         public List<TeacherCourse> TeacherCourses = new List<TeacherCourse>();
+
+        public Teacher()
+        {
+            Role = Role.Teacher;
+        }
     }
 }
