@@ -1,6 +1,9 @@
+using System.Text;
 using Bimbelsharp.Area.CourseArea.Service;
 using Bimbelsharp.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Bimbelsharp
 {
@@ -19,6 +22,30 @@ namespace Bimbelsharp
             builder.Services.AddControllers(); // Pastikan hanya ada satu ini
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            //jwt setup
+            var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.SaveToken = true;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                    ValidAudience = builder.Configuration["Jwt:Audience"]
+                };
+            });
+
 
             // Register repository
             builder.Services.AddScoped<ICourseRepository, CourseRepository>();
