@@ -1,9 +1,11 @@
 using System.Text;
 using Bimbelsharp.Area.CourseArea.Service;
+using Bimbelsharp.Area.UserArea.Service;
 using Bimbelsharp.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace Bimbelsharp
 {
@@ -21,7 +23,38 @@ namespace Bimbelsharp
             // Add services to the container
             builder.Services.AddControllers(); // Pastikan hanya ada satu ini
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Bimbelsharp API",
+                    Version = "v1"
+                });
+
+                // Tambahkan konfigurasi untuk Bearer Token (JWT)
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Masukkan token dengan format: Bearer {token}"
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement{{ new OpenApiSecurityScheme{
+                Reference = new OpenApiReference{
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                    }
+                },
+                new List<string>()
+            }
+            });
+            });
+
 
             //jwt setup
             var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
@@ -47,8 +80,11 @@ namespace Bimbelsharp
             });
 
 
+
+
             // Register repository
             builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
 
@@ -60,10 +96,12 @@ namespace Bimbelsharp
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers(); // Pastikan ini tetap ada
 
             app.Run();
         }
+        
     }
 }

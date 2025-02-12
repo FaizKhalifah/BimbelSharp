@@ -1,9 +1,11 @@
 ﻿using Bimbelsharp.Area.CourseArea.Service;
 using Bimbelsharp.Data.Model.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Bimbelsharp.Area.CourseArea
 {
+    [Authorize]
     [Route("api/course")]
     [ApiController]
     public class CourseController : ControllerBase

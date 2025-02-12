@@ -136,3 +136,14 @@ D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Bimbelsharp.runtimeconfig.json
 D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Bimbelsharp.pdb
 D:\Projekan\Personal\Bimbelsharp\obj\Debug\net8.0\Bimbelsharp.genruntimeconfig.cache
 D:\Projekan\Personal\Bimbelsharp\obj\Debug\net8.0\ref\Bimbelsharp.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\Projekan\Personal\Bimbelsharp\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Projekan\Personal\Bimbelsharp\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

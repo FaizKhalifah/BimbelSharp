@@ -50,6 +50,10 @@ namespace Bimbelsharp.Data
                 .HasOne(tc => tc.TeacherCourses)
                 .WithMany(c => c.TeacherCourses)
                 .HasForeignKey(tc => tc.courseId);
+
+            modelBuilder.Entity<Admin>().ToTable("Admins");
+            modelBuilder.Entity<Teacher>().ToTable("Teachers");
+            modelBuilder.Entity<Student>().ToTable("Students");
         }
     }
 }
