@@ -24,8 +24,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "Bimbelsharp.Data.Model.User",
+        "Name": "request",
+        "Type": "Bimbelsharp.Data.Model.DTO.RegisterDTO",
         "IsRequired": true
       }
     ],
