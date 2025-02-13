@@ -2,17 +2,18 @@
 using Bimbelsharp.Data.Model.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Bimbelsharp.Area.CourseArea
 {
     [Authorize]
     [Route("api/course")]
     [ApiController]
-    public class CourseController : ControllerBase
+    public class CourseApiController : ControllerBase
     {
         private readonly ICourseRepository _courseRepository;
 
-        public CourseController(ICourseRepository courseRepository)
+        public CourseApiController(ICourseRepository courseRepository)
         {
             _courseRepository = courseRepository;
         }
@@ -23,6 +24,7 @@ namespace Bimbelsharp.Area.CourseArea
             var courses = await _courseRepository.GetAllCoursesAsync();
             return Ok(courses);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCourseById(int id)
@@ -61,7 +63,7 @@ namespace Bimbelsharp.Area.CourseArea
         [HttpDelete("{id}")]
         public async Task<IActionResult> deleteCourse(int id)
         {
-            if (id==null)
+            if (id == null)
             {
                 return BadRequest("need and id to delete data");
             }
@@ -71,6 +73,6 @@ namespace Bimbelsharp.Area.CourseArea
                 return NotFound("Error deleting data");
             }
             return Ok("Data deleted successfully");
-        }   
+        }
     }
 }
