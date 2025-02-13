@@ -70,7 +70,7 @@
     "/api/course": {
       "get": {
         "tags": [
-          "Course"
+          "CourseApi"
         ],
         "responses": {
           "200": {
@@ -80,7 +80,7 @@
       },
       "post": {
         "tags": [
-          "Course"
+          "CourseApi"
         ],
         "requestBody": {
           "content": {
@@ -111,7 +111,7 @@
     "/api/course/{id}": {
       "get": {
         "tags": [
-          "Course"
+          "CourseApi"
         ],
         "parameters": [
           {
@@ -132,7 +132,7 @@
       },
       "put": {
         "tags": [
-          "Course"
+          "CourseApi"
         ],
         "parameters": [
           {
@@ -172,7 +172,7 @@
       },
       "delete": {
         "tags": [
-          "Course"
+          "CourseApi"
         ],
         "parameters": [
           {
@@ -184,6 +184,18 @@
               "format": "int32"
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/course/index": {
+      "get": {
+        "tags": [
+          "CourseMvc"
         ],
         "responses": {
           "200": {

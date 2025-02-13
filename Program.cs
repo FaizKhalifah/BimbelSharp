@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using Bimbelsharp.Area.CourseArea.Service;
 using Bimbelsharp.Area.UserArea.Service;
 using Bimbelsharp.Data;
@@ -20,10 +20,9 @@ namespace Bimbelsharp
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")
                 ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
-            // Add services to the container
-            builder.Services.AddControllers(); // Pastikan hanya ada satu ini
+            // **Tambahkan dukungan MVC dengan Views**
+            builder.Services.AddControllersWithViews(); // ✅ Pastikan ini ada
             builder.Services.AddEndpointsApiExplorer();
-
 
             builder.Services.AddSwaggerGen(options =>
             {
@@ -33,7 +32,6 @@ namespace Bimbelsharp
                     Version = "v1"
                 });
 
-                // Tambahkan konfigurasi untuk Bearer Token (JWT)
                 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
@@ -44,19 +42,18 @@ namespace Bimbelsharp
                     Description = "Masukkan token dengan format: Bearer {token}"
                 });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement{{ new OpenApiSecurityScheme{
-                Reference = new OpenApiReference{
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                    }
-                },
-                new List<string>()
-            }
-            });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement{{
+                    new OpenApiSecurityScheme{
+                        Reference = new OpenApiReference{
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new List<string>()
+                }});
             });
 
-
-            //jwt setup
+            // JWT setup
             var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
 
             builder.Services.AddAuthentication(options =>
@@ -79,16 +76,13 @@ namespace Bimbelsharp
                 };
             });
 
-
-
-
             // Register repository
             builder.Services.AddScoped<ICourseRepository, CourseRepository>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
 
             var app = builder.Build();
 
-            // Configure middleware
+            // Middleware konfigurasi
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -98,10 +92,20 @@ namespace Bimbelsharp
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
-            app.MapControllers(); // Pastikan ini tetap ada
+
+            // **Tambahkan routing MVC**
+            app.UseStaticFiles(); // ✅ Wajib agar CSS & JS bisa di-load
+            app.UseRouting(); // ✅ Tambahkan routing
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}"
+                );
+            });
 
             app.Run();
         }
-        
     }
 }

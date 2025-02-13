@@ -27,3 +27,7 @@ build_property.MSBuildProjectDirectory = D:\Projekan\Personal\Bimbelsharp
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
+
+[D:/Projekan/Personal/Bimbelsharp/Areas/CourseArea/Views/CourseMvc/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ291cnNlQXJlYVxWaWV3c1xDb3Vyc2VNdmNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

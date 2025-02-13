@@ -7,18 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Area\Admin\**" />
-    <Compile Remove="Area\Student\**" />
-    <Compile Remove="Area\Teacher\**" />
-    <Content Remove="Area\Admin\**" />
-    <Content Remove="Area\Student\**" />
-    <Content Remove="Area\Teacher\**" />
-    <EmbeddedResource Remove="Area\Admin\**" />
-    <EmbeddedResource Remove="Area\Student\**" />
-    <EmbeddedResource Remove="Area\Teacher\**" />
-    <None Remove="Area\Admin\**" />
-    <None Remove="Area\Student\**" />
-    <None Remove="Area\Teacher\**" />
+    <Compile Remove="Areas\Admin\**" />
+    <Compile Remove="Areas\Student\**" />
+    <Compile Remove="Areas\Teacher\**" />
+    <Content Remove="Areas\Admin\**" />
+    <Content Remove="Areas\Student\**" />
+    <Content Remove="Areas\Teacher\**" />
+    <EmbeddedResource Remove="Areas\Admin\**" />
+    <EmbeddedResource Remove="Areas\Student\**" />
+    <EmbeddedResource Remove="Areas\Teacher\**" />
+    <None Remove="Areas\Admin\**" />
+    <None Remove="Areas\Student\**" />
+    <None Remove="Areas\Teacher\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\CourseArea\Model\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
