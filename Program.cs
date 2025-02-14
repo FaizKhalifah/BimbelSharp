@@ -21,7 +21,17 @@ namespace Bimbelsharp
                 ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.")));
 
             // **Tambahkan dukungan MVC dengan Views**
-            builder.Services.AddControllersWithViews(); // ✅ Pastikan ini ada
+            //builder.Services.AddControllersWithViews();
+
+            builder.Services.AddControllersWithViews()
+            .AddRazorOptions(options =>
+            {
+                options.AreaViewLocationFormats.Clear();
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{1}/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/Shared/{0}.cshtml");
+                options.AreaViewLocationFormats.Add("/Areas/{2}/Views/{0}.cshtml"); // Tambahkan ini
+            });
+
             builder.Services.AddEndpointsApiExplorer();
 
             builder.Services.AddSwaggerGen(options =>
