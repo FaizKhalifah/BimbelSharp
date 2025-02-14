@@ -28,8 +28,16 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Projekan/Personal/Bimbelsharp/Areas/CourseArea/Views/CourseMvc/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ291cnNlQXJlYVxWaWV3c1xDb3Vyc2VNdmNcSW5kZXguY3NodG1s
+[D:/Projekan/Personal/Bimbelsharp/Areas/CourseArea/Views/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ291cnNlQXJlYVxWaWV3c1xBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projekan/Personal/Bimbelsharp/Areas/CourseArea/Views/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ291cnNlQXJlYVxWaWV3c1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Projekan/Personal/Bimbelsharp/Areas/CourseArea/Views/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ291cnNlQXJlYVxWaWV3c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Projekan/Personal/Bimbelsharp/Views/Shared/_Layout.cshtml]

@@ -39,7 +39,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\CourseArea\Model\" />
+    <Folder Include="Areas\CourseArea\Views\CourseMvc\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
 
