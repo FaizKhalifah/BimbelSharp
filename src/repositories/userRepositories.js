@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 
-async function createUser(userData) {
-    const user = new User(userData);
+async function createUser(data) {
+    const user = new User(data);
     return await user.save();
 }
 
@@ -15,8 +15,8 @@ async function getUserById(id){
     return user;
 }
 
-async function updateUser(id,updateData) {
-    return await User.findByIdAndUpdate(id,updateData,{new:true});
+async function updateUser(id,data) {
+    return await User.findByIdAndUpdate(id,data,{new:true});
 }
 
 async function deleteUser(id) {
