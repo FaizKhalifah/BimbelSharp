@@ -1,4 +1,3 @@
-import { MongoGCPError } from "mongodb";
 import mongoose from "mongoose";
 
 const EnrollmentSchema = new mongoose.Schema({
