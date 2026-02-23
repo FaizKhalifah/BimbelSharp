@@ -25,6 +25,10 @@ class UserRepository{
         return await User.findByIdAndDelete(id);
     }
 
+    async findByName(name) {
+        return User.findOne({ name });
+    }
+
 }
 
 
