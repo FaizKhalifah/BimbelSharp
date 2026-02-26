@@ -1,4 +1,6 @@
 import CourseRepository from "../repositories/courseRepository.js";
+import {formateData} from "../utils/index.js";
+import {APIError} from "../utils/app-errors.js";
 
 class CourseService{
     constructor(){
@@ -8,45 +10,45 @@ class CourseService{
     async createCourse(courseData){
         try{
             const createCourseResult = await this.repository.createCourse(courseData);
-            return createCourseResult;
+            return formateData(createCourseResult);
         }catch(err){
-            console.error(err);
+            throw new APIError("data not found");
         }
     }
 
     async getAllCourse(){
         try{
             const getAllCoursesResult = await this.repository.getAllCourse();
-            return getAllCoursesResult;
+            return formateData(getAllCoursesResult);
         }catch(err){
-            console.error(err);
+            throw new APIError("data not found");
         }
     }
 
     async getCourseById(id){
         try{
             const getCourseByIdResult = await this.repository.getCourseById(id);
-            return getCourseByIdResult;
+            return formateData(getCourseByIdResult);
         }catch(err){
-            console.error(err);
+            throw new APIError("data not found");
         }
     }
 
     async updateCourse(id,updateData){
         try{
             const updateCourseResult = await this.repository.updateCourse(id,updateData);
-            return updateCourseResult;
+            return formateData(updateCourseResult);
         }catch(err){
-            console.error(err);
+            throw new APIError("data not found");
         }
     }
 
     async deleteCourse(id){
         try{
             const deleteCourseResult = await this.repository.deleteCourse(id);
-            return deleteCourseResult;
+            return formateData(deleteCourseResult);
         }catch(err){
-            console.error(err);
+            throw new APIError("data not found");
         }
     }
 }
