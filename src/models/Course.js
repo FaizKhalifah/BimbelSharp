@@ -9,15 +9,23 @@ const CourseSchema = new mongoose.Schema({
 
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Teacher',
         required: true
     },
 
     students: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Student'
     }],
 
+    finalGrades: [{
+        student: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Student'
+        },
+            grade: Number
+    }],
+    
     createdAt: {
         type: Date,
         default: Date.now
