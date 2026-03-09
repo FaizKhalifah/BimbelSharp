@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const AssignmentSchema = mongoose.Schema({
+const AssignmentSchema = new mongoose.Schema({
     title: String,
     description: String,
     dueDate: Date,
