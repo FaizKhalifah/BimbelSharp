@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const SubmissionSchema = mongoose.Schema({
+const SubmissionSchema = new mongoose.Schema({
     assignment: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Assignment'
