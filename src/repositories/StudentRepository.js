@@ -27,4 +27,6 @@ class StudentRepository{
     }
 }
 
-export default StudentRepository;
+export default {
+    StudentRepository
+};
