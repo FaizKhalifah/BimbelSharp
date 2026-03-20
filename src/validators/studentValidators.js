@@ -8,6 +8,18 @@ const createStudentSchema = zod.object({
   gradeLevel: zod.string().optional()
 });
 
+const updateStudentSchema = zod.object({
+  name: z.string().min(3).optional(),
+  email: zod.email().optional(),
+  phone: zod.string().optional(),
+  school: zod.string().optional(),
+  grade: zod.string().optional()
+});
+
+const objectIdSchema = z.string().length(24);
+
 export default {
-    createStudentSchema
+    createStudentSchema,
+    updateStudentSchema,
+    objectIdSchema
 }

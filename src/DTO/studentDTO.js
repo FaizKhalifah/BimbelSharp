@@ -8,6 +8,17 @@ function createStudentDTO(body){
     }
 }
 
+function updateStudentDTO(body) {
+  return {
+    ...(body.name && { name: body.name }),
+    ...(body.phone && { phone: body.phone }),
+    ...(body.email && { email: body.email }),
+    ...(body.school && { school: body.school }),
+    ...(body.grade && { gradeLevel: body.grade })
+  };
+}
+
 export default{
-    createStudentDTO
+    createStudentDTO,
+    updateStudentDTO
 }
