@@ -1,6 +1,9 @@
 import StudentRepository from "../repositories/StudentRepository.js";
-import {formateData} from "../utils/index.js";
-import {APIError} from "../utils/app-errors.js";
+import utils from "../utils/index.js";
+import appErrors from "../utils/app-errors.js";
+
+const {formateData} = utils;
+const {APIError} = appErrors;
 
 class StudentService{
     constructor() {
@@ -10,13 +13,14 @@ class StudentService{
 
     async createStudent(studentData){
         try{
-            const isAvailable = await this.repository.findById(id);
+            const isAvailable = await this.repository.findByEmail(studentData.email);
             if(isAvailable){
                 throw new APIError("Student already exist");
             }
             const createStudentResult = await this.repository.create(studentData);
             return formateData(createStudentResult);
         }catch(err){
+            console.log(err);
             throw new APIError("data not found");
         }
     }
@@ -65,3 +69,5 @@ class StudentService{
         }
     }
 }
+
+export default new StudentService();

@@ -1,4 +1,4 @@
-import CourseService from "../services/courseService.js";
+import CourseService from "../../services/courseService.js";
 
 class CourseController{
     async getAllCourse(){
