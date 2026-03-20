@@ -8,6 +8,12 @@ import dotenv from "dotenv";
 import engine from "ejs-mate";
 import { fileURLToPath } from "url";
 
+
+
+dotenv.config();
+
+import apiRouter from "./src/routes/api/apiIndexRoutes.js";
+
 const port = process.env.PORT || 3001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +26,8 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.engine("ejs", engine);
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(apiRouter);
 
 const connection ='mongodb://localhost:27017/bimbelSharp';
 mongoose.connect(connection).then((result) => app.listen(port))

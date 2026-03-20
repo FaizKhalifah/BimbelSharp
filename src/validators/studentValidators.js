@@ -9,14 +9,14 @@ const createStudentSchema = zod.object({
 });
 
 const updateStudentSchema = zod.object({
-  name: z.string().min(3).optional(),
+  name: zod.string().min(3).optional(),
   email: zod.email().optional(),
   phone: zod.string().optional(),
   school: zod.string().optional(),
   grade: zod.string().optional()
 });
 
-const objectIdSchema = z.string().length(24);
+const objectIdSchema = zod.string().length(24);
 
 export default {
     createStudentSchema,

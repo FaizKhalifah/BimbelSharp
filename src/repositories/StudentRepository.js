@@ -5,8 +5,10 @@ class StudentRepository extends BaseRepository{
    constructor(){
         super(Student);
    }
+
+   async findByEmail(email){
+        return Student.findOne({email});
+   }
 }
 
-export default {
-    StudentRepository
-};
+export default StudentRepository;

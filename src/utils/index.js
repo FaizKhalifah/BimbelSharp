@@ -1,7 +1,8 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import config from "../config/index.js";
 
-import {APP_SECRET} from "../config/index.js";
+const {APP_SECRET} = config;
 
 async function generateSalt() {
     return await bcrypt.genSalt();
