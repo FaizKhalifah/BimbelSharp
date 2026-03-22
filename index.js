@@ -27,7 +27,28 @@ app.set('view engine', 'ejs');
 app.engine("ejs", engine);
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//routes
 app.use(apiRouter);
+
+
+//global error handler (must be after all routes)
+app.use((err, req, res, next) => {
+  console.error(err);
+
+  if (err.statusCode) {
+    return res.status(err.statusCode).json({
+      status: err.status,
+      message: err.message
+    });
+  }
+
+  // fallback
+  res.status(500).json({
+    status: "error",
+    message: "Internal Server Error"
+  });
+});
 
 const connection ='mongodb://localhost:27017/bimbelSharp';
 mongoose.connect(connection).then((result) => app.listen(port))

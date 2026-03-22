@@ -3,7 +3,7 @@ import utils from "../utils/index.js";
 import appErrors from "../utils/app-errors.js";
 
 const {formateData} = utils;
-const {APIError} = appErrors;
+const {ConflictError, BadRequestError, InternalError} = appErrors;
 
 class StudentService{
     constructor() {
@@ -15,13 +15,13 @@ class StudentService{
         try{
             const isAvailable = await this.repository.findByEmail(studentData.email);
             if(isAvailable){
-                throw new APIError("Student already exist");
+                throw new ConflictError("Student already exist");
             }
             const createStudentResult = await this.repository.create(studentData);
             return formateData(createStudentResult);
         }catch(err){
             console.log(err);
-            throw new APIError("data not found");
+            throw new InternalError("Error creating student");
         }
     }
 
@@ -30,16 +30,19 @@ class StudentService{
             const students = await this.repository.findAll();
             return formateData(students);
         }catch(err){
-            throw new APIError("data not found");
+            throw new InternalError("data not found");
         }
     }
 
     async getStudentById(id){
         try{
             const student = await this.repository.findById(id);
+            if(!student){
+                throw new BadRequestError("Student not found");
+            }
             return formateData(student);
         }catch(err){
-            throw new APIError("student not found");
+            throw new InternalError("student not found");
         }
     }
 
@@ -47,12 +50,12 @@ class StudentService{
         try{
             const isAvailable = await this.repository.findById(id);
             if(!isAvailable){
-                throw new APIError("Student not found");
+                throw new BadRequestError("Student not found");
             }
             const updatedStudent = await this.repository.update(id,data);
             return formateData(updatedStudent);
         }catch(err){
-            throw new APIError("error updating data");
+            throw new InternalError("error updating data");
         }
     }
 
@@ -60,12 +63,12 @@ class StudentService{
         try{
             const isAvailable = await this.repository.findById(id);
             if(!isAvailable){
-                throw new APIError("Student not found");
+                throw new BadRequestError("Student not found");
             }
             const deletedStudent = await this.repository.delete(id);
             return formateData(deletedStudent);
         }catch(err){
-            throw new APIError("Error deleting data");
+            throw new InternalError("Error deleting data");
         }
     }
 }
