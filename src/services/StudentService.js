@@ -12,64 +12,43 @@ class StudentService{
     }
 
     async createStudent(studentData){
-        try{
-            const isAvailable = await this.repository.findByEmail(studentData.email);
-            if(isAvailable){
-                throw new ConflictError("Student already exist");
-            }
-            const createStudentResult = await this.repository.create(studentData);
-            return formateData(createStudentResult);
-        }catch(err){
-            console.log(err);
-            throw new InternalError("Error creating student");
+        const isAvailable = await this.repository.findByEmail(studentData.email);
+        if(isAvailable){
+            throw new ConflictError("Student already exist");
         }
+        const createStudentResult = await this.repository.create(studentData);
+        return formateData(createStudentResult);
     }
 
     async getAllStudent(){
-        try{
-            const students = await this.repository.findAll();
-            return formateData(students);
-        }catch(err){
-            throw new InternalError("data not found");
-        }
+        const students = await this.repository.findAll();
+        return formateData(students);
     }
 
     async getStudentById(id){
-        try{
-            const student = await this.repository.findById(id);
-            if(!student){
-                throw new BadRequestError("Student not found");
-            }
-            return formateData(student);
-        }catch(err){
-            throw new InternalError("student not found");
+        const student = await this.repository.findById(id);
+        if(!student){
+            throw new BadRequestError("Student not found");
         }
+        return formateData(student);
     }
 
     async updateStudent(id,data){
-        try{
-            const isAvailable = await this.repository.findById(id);
-            if(!isAvailable){
-                throw new BadRequestError("Student not found");
-            }
-            const updatedStudent = await this.repository.update(id,data);
-            return formateData(updatedStudent);
-        }catch(err){
-            throw new InternalError("error updating data");
+        const isAvailable = await this.repository.findById(id);
+        if(!isAvailable){
+            throw new BadRequestError("Student not found");
         }
+        const updatedStudent = await this.repository.update(id,data);
+        return formateData(updatedStudent);
     }
 
     async deleteStudent(id){
-        try{
-            const isAvailable = await this.repository.findById(id);
-            if(!isAvailable){
-                throw new BadRequestError("Student not found");
-            }
-            const deletedStudent = await this.repository.delete(id);
-            return formateData(deletedStudent);
-        }catch(err){
-            throw new InternalError("Error deleting data");
+        const isAvailable = await this.repository.findById(id);
+        if(!isAvailable){
+            throw new BadRequestError("Student not found");
         }
+        const deletedStudent = await this.repository.delete(id);
+        return formateData(deletedStudent);
     }
 }
 
