@@ -6,6 +6,7 @@ import session from "express-session";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import engine from "ejs-mate";
+import errorHandler from "./middlewares/errorHandler.js";
 import { fileURLToPath } from "url";
 
 
@@ -33,22 +34,7 @@ app.use(apiRouter);
 
 
 //global error handler (must be after all routes)
-app.use((err, req, res, next) => {
-  console.error(err);
-
-  if (err.statusCode) {
-    return res.status(err.statusCode).json({
-      status: err.status,
-      message: err.message
-    });
-  }
-
-  // fallback
-  res.status(500).json({
-    status: "error",
-    message: "Internal Server Error"
-  });
-});
+app.use(errorHandler);
 
 const connection ='mongodb://localhost:27017/bimbelSharp';
 mongoose.connect(connection).then((result) => app.listen(port))

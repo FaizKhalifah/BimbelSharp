@@ -5,6 +5,10 @@ class TeacherRepository extends BaseRepository{
     constructor(){
         super(Teacher);
     }
+
+    async findByEmail(email){
+        return Teacher.findOne({email});
+    }
 }
 
 export default TeacherRepository;
