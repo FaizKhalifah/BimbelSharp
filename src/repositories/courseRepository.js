@@ -5,7 +5,10 @@ class CourseRepository extends BaseRepository{
     constructor(){
         super(Course);
     }
+
+    async findByCode(code){
+        return Course.findOne({code});
+    }
 }
-export default{
-    CourseRepository
-}
+
+   export default CourseRepository;

@@ -1,6 +1,9 @@
 import CourseRepository from "../repositories/courseRepository.js";
-import {formateData} from "../utils/index.js";
-import {APIError} from "../utils/app-errors.js";
+import utils from "../utils/index.js";
+import appErrors from "../utils/app-errors.js";
+
+const {formateData} = utils;
+const {ConflictError, BadRequestError, InternalError} = appErrors;
 
 class CourseService{
     constructor(){
@@ -8,48 +11,44 @@ class CourseService{
     }
 
     async createCourse(courseData){
-        try{
-            const createCourseResult = await this.repository.createCourse(courseData);
-            return formateData(createCourseResult);
-        }catch(err){
-            throw new APIError("data not found");
+        const isAvailable = await this.repository.findById(courseData.code);
+        if(isAvailable){
+            throw new ConflictError("Course already exist");
         }
+        const createCourseResult = await this.repository.create(courseData);
+        return formateData(createCourseResult);
+        
     }
 
     async getAllCourse(){
-        try{
-            const getAllCoursesResult = await this.repository.getAllCourse();
-            return formateData(getAllCoursesResult);
-        }catch(err){
-            throw new APIError("data not found");
-        }
+        const courses = await this.repository.findAll();
+        return formateData(courses);
     }
 
     async getCourseById(id){
-        try{
-            const getCourseByIdResult = await this.repository.getCourseById(id);
-            return formateData(getCourseByIdResult);
-        }catch(err){
-            throw new APIError("data not found");
+        const course = await this.repository.findById(id);
+        if(!course){
+            throw new BadRequestError("Course not found");
         }
+        return formateData(course);
     }
 
     async updateCourse(id,updateData){
-        try{
-            const updateCourseResult = await this.repository.updateCourse(id,updateData);
-            return formateData(updateCourseResult);
-        }catch(err){
-            throw new APIError("data not found");
+        const isAvailable = await this.repository.findById(id);
+        if(!isAvailable){
+             throw new BadRequestError("Course not found");
         }
+        const updateResult = await this.repository.update(id,updateData);
+        return formateData(updateResult);
     }
 
     async deleteCourse(id){
-        try{
-            const deleteCourseResult = await this.repository.deleteCourse(id);
-            return formateData(deleteCourseResult);
-        }catch(err){
-            throw new APIError("data not found");
+       const isAvailable = await this.repository.findById(id);
+        if(!isAvailable){
+             throw new BadRequestError("Course not found");
         }
+        const deleteResult = await this.repository.delete(id);
+        return formateData(deleteResult);
     }
 }
 
