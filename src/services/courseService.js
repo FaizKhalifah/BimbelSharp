@@ -1,4 +1,5 @@
 import CourseRepository from "../repositories/courseRepository.js";
+import TeacherRepository from "../repositories/TeacherRepository.js";
 import utils from "../utils/index.js";
 import appErrors from "../utils/app-errors.js";
 
@@ -7,26 +8,31 @@ const {ConflictError, BadRequestError, InternalError} = appErrors;
 
 class CourseService{
     constructor(){
-        this.repository = new CourseRepository();
+        this.courseRepository = new CourseRepository();
+        this.teacherRepository = new TeacherRepository();
     }
 
     async createCourse(courseData){
-        const isAvailable = await this.repository.findById(courseData.code);
+        const isAvailable = await this.courseRepository.findById(courseData.code);
         if(isAvailable){
             throw new ConflictError("Course already exist");
         }
-        const createCourseResult = await this.repository.create(courseData);
+        const isTeacherAvailable = await this.teacherRepository.findById(courseData.teacherId);
+        if(!isTeacherAvailable){
+            throw new BadRequestError("Teacher not found");
+        }
+        const createCourseResult = await this.courseRepository.create(courseData);
         return formateData(createCourseResult);
         
     }
 
     async getAllCourse(){
-        const courses = await this.repository.findAll();
+        const courses = await this.courseRepository.findAll();
         return formateData(courses);
     }
 
     async getCourseById(id){
-        const course = await this.repository.findById(id);
+        const course = await this.courseRepository.findById(id);
         if(!course){
             throw new BadRequestError("Course not found");
         }
@@ -34,20 +40,20 @@ class CourseService{
     }
 
     async updateCourse(id,updateData){
-        const isAvailable = await this.repository.findById(id);
+        const isAvailable = await this.courseRepository.findById(id);
         if(!isAvailable){
              throw new BadRequestError("Course not found");
         }
-        const updateResult = await this.repository.update(id,updateData);
+        const updateResult = await this.courseRepository.update(id,updateData);
         return formateData(updateResult);
     }
 
     async deleteCourse(id){
-       const isAvailable = await this.repository.findById(id);
+       const isAvailable = await this.courseRepository.findById(id);
         if(!isAvailable){
              throw new BadRequestError("Course not found");
         }
-        const deleteResult = await this.repository.delete(id);
+        const deleteResult = await this.courseRepository.delete(id);
         return formateData(deleteResult);
     }
 }
