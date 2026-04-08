@@ -58,4 +58,4 @@ class CourseService{
     }
 }
 
-export default CourseService;
+export default new CourseService();
