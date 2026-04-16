@@ -17,7 +17,7 @@ class TeacherController{
         async getAll(req,res,next){
             try{
                 const teachers = await teacherService.getAllTeachers();
-                res.status(201).json(teachers);
+                res.status(200).json(teachers);
             }catch(err){
                 next(err)
             }
@@ -28,7 +28,7 @@ class TeacherController{
                 const teacherID = req.params.id;
                 teacherValidator.objectIdSchema.parse(teacherID);
                 const teacher = await teacherService.getTeacherById(teacher);
-                res.status(201).json(teacher);
+                res.status(200).json(teacher);
             }catch(err){
                 next(err);
             }
@@ -41,7 +41,7 @@ class TeacherController{
                 const dto = teacherDTO.updateTeacherDTO(req.body);
                 teacherValidator.updateTeacherSchema.parse(dto);
                 const updateResult = await teacherService.updateTeacher(teacherID,dto);
-                res.status(201).json(updateResult);
+                res.status(200).json(updateResult);
             }catch(err){
                 next(err);
             }
@@ -52,7 +52,7 @@ class TeacherController{
                 const teacherID = req.params.id;
                 teacherValidator.objectIdSchema.parse(teacherID);
                 const deleteResult = await teacherService.deleteTeacher(teacherID);
-                res.json(201).json(deleteResult);
+                res.json(200).json(deleteResult);
             }catch(err){
                 next(err);
             }

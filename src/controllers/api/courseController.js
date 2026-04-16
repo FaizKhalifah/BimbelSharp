@@ -17,7 +17,7 @@ class CourseController{
    async getAll(req,res,next){
     try{
         const courses = await courseService.getAllCourse();
-        res.status(201).json(courses);
+        res.status(200).json(courses);
     }catch(err){
         next(err);
     }
@@ -28,7 +28,7 @@ class CourseController{
         const courseId = req.params.id;
         courseValidator.objectIdSchema.parse(courseId);
         const course = await courseService.getCourseById(courseId);
-        res.status(201).json(course);
+        res.status(200).json(course);
     }catch(err){
         next(err);
     }
@@ -40,8 +40,8 @@ class CourseController{
         courseValidator.objectIdSchema.parse(courseId);
         const dto = courseDTO.updateCourseDTO(req.body);
         courseValidator.updateCourseSchema.parse(dto);
-        const updateResult = await courseService.updateCourse(dto);
-        res.status(201).json(updateResult);
+        const updateResult = await courseService.updateCourse(courseId,dto);
+        res.status(200).json(updateResult);
     }catch(err){
         next(err);
     }
@@ -52,7 +52,7 @@ class CourseController{
         const courseId = req.params.id;
         courseValidator.objectIdSchema.parse(courseId);
         const deleteResult = await courseService.deleteCourse(courseId);
-        res.status(201).json(deleteResult);
+        res.status(200).json(deleteResult);
     }catch(err){
         next(err);
     }
