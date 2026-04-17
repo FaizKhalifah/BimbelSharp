@@ -7,7 +7,11 @@ class CourseRepository extends BaseRepository{
     }
 
     async findByCode(code){
-        return Course.findOne({code});
+        return this.model.findOne({code});
+    }
+
+    async findWithRelations(id){
+        return this.model.findById(id).populate("teacher").populate("students");
     }
 }
 

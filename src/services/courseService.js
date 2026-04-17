@@ -78,8 +78,42 @@ class CourseService{
         course.students.push(studentID);
         await course.save();
 
-        return formatData(course);
+        return formateData(course);
 
+    }
+
+    async removeStudent(courseID,studentID){
+        const course = await this.courseRepository.findById(courseID);
+        if(!course){
+            throw new BadRequestError("Course not found");
+        }
+
+        const student= await this.studentRepository.findById(studentID);
+        if(!student){
+            throw new BadRequestError("student not found");
+        }
+
+        const isEnrolled = course.students.include(studentID);
+        if(!isEnrolled){
+            throw new BadRequestError("Student not enrolled in this class");
+        }
+
+        const studentIndex  = course.students.indexOf(studentID);
+        course.students.slice(studentIndex,studentIndex);
+        await course.save();
+        return formateData(course);
+
+
+    }
+
+    async getCourseDetail(id) {
+        const course = await this.courseRepository.findWithRelations(id);
+
+        if (!course) {
+            throw new NotFoundError("Course not found");
+        }
+
+        return formateData(course);
     }
 }
 
