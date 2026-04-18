@@ -28,9 +28,14 @@ class CourseService{
         
     }
 
-    async getAllCourse(){
-        const courses = await this.courseRepository.findAll();
-        return formateData(courses);
+    async getAllCourse({page,limit}){
+        const skip = (page - 1) * limit;
+        const courses = await this.courseRepository.getAllWithPagination(skip,limit)
+        return formateData(
+            {
+                page,limit,data:courses
+            }
+        );
     }
 
     async getCourseById(id){

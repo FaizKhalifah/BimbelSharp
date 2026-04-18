@@ -13,6 +13,15 @@ class CourseRepository extends BaseRepository{
     async findWithRelations(id){
         return this.model.findById(id).populate("teacher").populate("students");
     }
+
+    async getAllWithPagination(skip, limit) {
+        return this.model
+            .find()
+            .skip(skip)
+            .limit(limit)
+            .populate("teacher", "name")
+            .populate("students", "name");
+    }
 }
 
    export default CourseRepository;
