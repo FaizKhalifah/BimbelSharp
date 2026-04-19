@@ -64,7 +64,7 @@ class CourseService{
         return formateData(deleteResult);
     }
 
-    async assignStudent(courseID,studentID){
+    async enrollStudent(courseID,studentID){
         const course = await this.courseRepository.findById(courseID);
         if(!course){
             throw new BadRequestError("Course not found");
