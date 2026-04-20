@@ -20,11 +20,17 @@ const enrollStudentSchema = zod.object({
     courseID : zod.string()
 })
 
+const removeStudentSchema = zod.object({
+    studentID : zod.string(),
+    courseID : zod.string()
+})
+
 const objectIdSchema = zod.string().length(24);
 
 export default{
     createCourseSchema,
     updateCourseSchema,
     enrollStudentSchema,
+    removeStudentSchema,
     objectIdSchema
 }

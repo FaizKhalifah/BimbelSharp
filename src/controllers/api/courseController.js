@@ -73,6 +73,18 @@ class CourseController{
         next(err);
     }
    }
+
+   async removeStudent(req,res,next){
+    try{
+        const requestDTO = courseDTO.removeStudentDTO(req.body);
+        courseValidator.removeStudentSchema.parse(requestDTO);
+        const removal = await courseService.removeStudent(requestDTO);
+        res.status(201).json(removal);
+    }
+    catch(err){
+        next(err);
+    }
+   }
 }
 
 export default new CourseController();
