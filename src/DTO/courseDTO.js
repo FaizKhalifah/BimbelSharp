@@ -16,7 +16,23 @@ function updateCourseDTO(body){
     }
 }
 
+function enrollStudentDTO(body){
+    return{
+        studentID = body.studentID,
+        courseID = body.courseID
+    }
+}
+
+function removeStudentDTO(body){
+    return{
+        studentID = body.studentID,
+        courseID = body.courseID
+    }
+}
+
 export default{
     createCourseDTO,
-    updateCourseDTO
+    updateCourseDTO,
+    enrollStudentDTO,
+    removeStudentDTO
 }

@@ -16,7 +16,11 @@ class CourseController{
 
    async getAll(req,res,next){
     try{
-        const courses = await courseService.getAllCourse();
+        const { page = 1, limit = 10 } = req.query;
+        const courses = await courseService.getAllCourse({
+            page: Number(page),
+            limit: Number(limit)
+        });
         res.status(200).json(courses);
     }catch(err){
         next(err);
@@ -54,6 +58,30 @@ class CourseController{
         const deleteResult = await courseService.deleteCourse(courseId);
         res.status(200).json(deleteResult);
     }catch(err){
+        next(err);
+    }
+   }
+
+   async enrollStudent(req,res,next){
+    try{
+        const requestDTO = courseDTO.enrollStudentDTO(req.body);
+        courseValidator.enrollStudentSchema.parse(requestDTO);
+        const enrollment = await courseService.enrollStudent(requestDTO);
+        res.status(201).json(enrollment);
+    }
+    catch(err){
+        next(err);
+    }
+   }
+
+   async removeStudent(req,res,next){
+    try{
+        const requestDTO = courseDTO.removeStudentDTO(req.body);
+        courseValidator.removeStudentSchema.parse(requestDTO);
+        const removal = await courseService.removeStudent(requestDTO);
+        res.status(201).json(removal);
+    }
+    catch(err){
         next(err);
     }
    }
