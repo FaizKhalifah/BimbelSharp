@@ -14,6 +14,7 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 import apiRouter from "./src/routes/api/apiIndexRoutes.js";
+import viewRouter from "./src/routes/web/webIndexRoutes.js";
 
 const port = process.env.PORT || 3001;
 const __filename = fileURLToPath(import.meta.url);
@@ -31,6 +32,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //routes
 app.use(apiRouter);
+app.use(viewRouter);
 
 
 //global error handler (must be after all routes)
