@@ -1,0 +1,30 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/pageContentStyle.css">
+<h2>Teacher List</h2>
+
+<a href="/teachers/create" class="createButton">Tambah Teacher</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% teachers.forEach(t => { %>
+            <tr>
+                <td><%= t.name %></td>
+                <td><%= t.email %></td>
+                <td>
+                    <a href="/teachers/<%= t._id %>">Detail</a>
+                    <a href="/teachers/edit/<%= t._id %>">Edit</a>
+                    <form action="/teachers/delete/<%= t._id %>" method="POST" style="display:inline;">
+                        <button type="submit">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

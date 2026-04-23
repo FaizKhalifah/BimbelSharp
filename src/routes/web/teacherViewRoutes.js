@@ -3,13 +3,13 @@ import teacherViewController from "../../controllers/web/teacherViewController.j
 
 const teacherViewRouter = express.Router()
 
-teacherViewRouter.get("/", controller.index);
-teacherViewRouter.get("/create", controller.createPage);
-teacherViewRouter.post("/", controller.store);
+teacherViewRouter.get("/", teacherViewController.index);
+teacherViewRouter.get("/create", teacherViewController.create);
+teacherViewRouter.post("/", teacherViewController.store);
 
-teacherViewRouter.get("/:id", controller.detail);
-teacherViewRouter.get("/edit/:id", controller.editPage);
-teacherViewRouter.post("/:id", controller.update);
-teacherViewRouter.post("/delete/:id", controller.delete);
+teacherViewRouter.get("/:id", teacherViewController.detail);
+teacherViewRouter.get("/edit/:id", teacherViewController.edit);
+teacherViewRouter.post("/:id", teacherViewController.update);
+teacherViewRouter.post("/delete/:id", teacherViewController.delete);
 
-export default teacherViewRouter();
+export default teacherViewRouter;

@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+}
+
+.createButton {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 2rem;
+}
+
+button {
+    padding: 6px 10px;
+    background: red;
+    color: white;
+    border: none;
+}
+

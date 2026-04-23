@@ -3,6 +3,7 @@ import teacherViewRoutes from "./teacherViewRoutes.js";
 
 const viewRouter = express.Router();
 
-viewRouter.use(teacherViewRoutes);
+viewRouter.use("/teachers",teacherViewRoutes);
+
 
 export default viewRouter;

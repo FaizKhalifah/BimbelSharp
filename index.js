@@ -6,7 +6,7 @@ import session from "express-session";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import engine from "ejs-mate";
-import errorHandler from "./middlewares/errorHandler.js";
+import errorHandler from "../Bimbelsharp/src/middlewares/errorHandler.js";
 import { fileURLToPath } from "url";
 
 
@@ -37,6 +37,10 @@ app.use(viewRouter);
 
 //global error handler (must be after all routes)
 app.use(errorHandler);
+
+app.get("/",(req,res)=>{
+    res.send("ini aplikasi bimblesharp")
+})
 
 const connection ='mongodb://localhost:27017/bimbelSharp';
 mongoose.connect(connection).then((result) => app.listen(port))
