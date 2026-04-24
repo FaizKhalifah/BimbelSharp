@@ -27,7 +27,7 @@ class TeacherController{
             try{
                 const teacherID = req.params.id;
                 teacherValidator.objectIdSchema.parse(teacherID);
-                const teacher = await teacherService.getTeacherById(teacher);
+                const teacher = await teacherService.getTeacherById(teacherID);
                 res.status(200).json(teacher);
             }catch(err){
                 next(err);
