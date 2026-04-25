@@ -8,7 +8,9 @@
     <thead>
         <tr>
             <th>Nama</th>
+            <th>Nomor telepon</th>
             <th>Email</th>
+            <th>Spesialisasi</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -16,7 +18,9 @@
         <% teachers.forEach(t => { %>
             <tr>
                 <td><%= t.name %></td>
+                <td><%= t.phone %></td>
                 <td><%= t.email %></td>
+                <td><%= t.specialization %></td>
                 <td>
                     <a href="/teachers/<%= t._id %>">Detail</a>
                     <a href="/teachers/edit/<%= t._id %>">Edit</a>

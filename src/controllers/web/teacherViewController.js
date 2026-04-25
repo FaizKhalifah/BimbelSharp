@@ -22,7 +22,7 @@ class TeacherViewController{
     async store(req,res,next){
         try {
             await teacherService.createTeacher(req.body);
-            res.redirect("pages/teachers");
+            res.redirect("/teachers");
         } catch (err) {
             next(err);
         }
@@ -59,7 +59,7 @@ class TeacherViewController{
     async update(req,res,next){
         try {
             await teacherService.updateTeacher(req.params.id, req.body);
-            res.redirect("pages/teachers");
+            res.redirect("/teachers");
         } catch (err) {
             next(err);
         }

@@ -2,6 +2,8 @@
 
 <form action="/teachers/<%= teacher._id %>?_method=PUT" method="POST">
     <input type="text" name="name" value="<%= teacher.name %>">
+    <input type="text" name="phone" value="<%= teacher.phone %>">
     <input type="email" name="email" value="<%= teacher.email %>">
+    <input type="text" name="specialization" value="<%= teacher.specialization %>">
     <button type="submit">Update</button>
 </form>
