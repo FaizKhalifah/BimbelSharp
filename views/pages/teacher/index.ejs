@@ -22,8 +22,8 @@
                 <td><%= t.email %></td>
                 <td><%= t.specialization %></td>
                 <td>
-                    <a href="/teachers/<%= t._id %>">Detail</a>
-                    <a href="/teachers/edit/<%= t._id %>">Edit</a>
+                    <a href="/teachers/<%= t._id %>" class="detailButton">Detail</a>
+                    <a href="/teachers/edit/<%= t._id %>" class="editButton">Edit</a>
                     <form action="/teachers/delete/<%= t._id %>" method="POST" style="display:inline;">
                         <button type="submit">Hapus</button>
                     </form>

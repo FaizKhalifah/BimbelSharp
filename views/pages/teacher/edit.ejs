@@ -1,9 +1,13 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/formPageStyle.css">
 <h2>Edit Teacher</h2>
 
-<form action="/teachers/<%= teacher._id %>?_method=PUT" method="POST">
-    <input type="text" name="name" value="<%= teacher.name %>">
-    <input type="text" name="phone" value="<%= teacher.phone %>">
-    <input type="email" name="email" value="<%= teacher.email %>">
-    <input type="text" name="specialization" value="<%= teacher.specialization %>">
-    <button type="submit">Update</button>
-</form>
+<div class="formContainer">
+    <form action="/teachers/<%= teacher._id %>?_method=PUT" method="POST">
+        <input type="text" name="name" value="<%= teacher.name %>">
+        <input type="text" name="phone" value="<%= teacher.phone %>">
+        <input type="email" name="email" value="<%= teacher.email %>">
+        <input type="text" name="specialization" value="<%= teacher.specialization %>">
+        <button type="submit">Update</button>
+    </form>
+</div>
