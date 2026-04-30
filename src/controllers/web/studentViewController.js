@@ -15,12 +15,13 @@ class StudentViewController{
     }
 
     async create(req,res){
-
+        res.render("pages/student/create", { title: "Add Student" });
     }
 
     async store(req,res,next){
         try{
-
+            await studentService.createStudent(req.body);
+            res.redirect("/students");
         }
         catch (err) {
             next(err);
@@ -29,7 +30,11 @@ class StudentViewController{
 
     async detail(req,res,next){
         try{
-
+            const result = await studentService.getStudentById(req.params.id);
+            res.render("pages/student/detail", {
+                title: "Detail Student",
+                student: result.data
+            })
         }catch (err) {
             next(err);
         }
@@ -37,7 +42,13 @@ class StudentViewController{
 
     async edit(req,res,next){
         try{
-
+            const result = await studentService.getStudentById(req.params.id);
+            
+            res.render("pages/student/edit", {
+                title: "Edit Student",
+                student: result.data
+            });
+            
         }
         catch (err) {
             next(err);
@@ -46,7 +57,8 @@ class StudentViewController{
 
     async update(req,res,next){
         try{
-            
+            await studentService.updateStudent(req.params.id,req.body);
+            res.redirect("/students")
         }
         catch (err) {
             next(err);
@@ -55,7 +67,8 @@ class StudentViewController{
 
     async delete(req,res,next){
         try{
-
+            await studentService.deleteStudent(req.params.id);
+            res.redirect("/students")
         }
         catch (err) {
             next(err);
