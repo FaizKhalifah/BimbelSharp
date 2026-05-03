@@ -1,0 +1,36 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/pageContentStyle.css">
+<h2>Students List</h2>
+
+<a href="/students/create" class="createButton">Tambah Student</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Nomor telepon</th>
+            <th>Email</th>
+            <th>Asal sekolah</th>
+            <th>Nilai</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% students.forEach(s => { %>
+            <tr>
+                <td><%= s.name %></td>
+                <td><%= s.phone %></td>
+                <td><%= s.email %></td>
+                <td><%= s.school %></td>
+                <td><%= s.grade %></td>
+                <td>
+                    <a href="/students/<%= s._id %>" class="detailButton">Detail</a>
+                    <a href="/students/edit/<%= s._id %>" class="editButton">Edit</a>
+                    <form action="/students/delete/<%= s._id %>" method="POST" style="display:inline;">
+                        <button type="submit">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>

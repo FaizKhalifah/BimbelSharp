@@ -1,6 +1,12 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/detailPageStyle.css">
 <h2>Detail Teacher</h2>
 
-<p>Nama: <%= teacher.name %></p>
-<p>Email: <%= teacher.email %></p>
+<div class="detailContainer">
+    <p>Nama: <%= teacher.name %></p>
+    <p>Nomor telepon: <%= teacher.phone %></p>
+    <p>Email: <%= teacher.email %></p>
+    <p>Spesialisasi: <%= teacher.specialization %></p>
+</div>
 
-<a href="/teachers">Kembali</a>
+<a href="/teachers" class="returnLink">Kembali</a>

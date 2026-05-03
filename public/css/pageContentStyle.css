@@ -20,6 +20,22 @@ th, td {
     margin-bottom: 2rem;
 }
 
+.detailButton{
+    padding: 6px 10px;
+    background: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
+.editButton{
+    padding: 6px 10px;
+    background: orange;
+    color: white;
+    text-decoration: none;
+    border: none;
+}
+
 button {
     padding: 6px 10px;
     background: red;

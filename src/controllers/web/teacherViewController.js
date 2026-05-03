@@ -16,13 +16,13 @@ class TeacherViewController{
     }
 
     async create(req,res){
-        res.render("pages/teacher/create", { title: "Create Teacher" });
+        res.render("pages/teacher/create", { title: "Add Teacher" });
     }
 
     async store(req,res,next){
         try {
             await teacherService.createTeacher(req.body);
-            res.redirect("pages/teachers");
+            res.redirect("/teachers");
         } catch (err) {
             next(err);
         }
@@ -59,7 +59,7 @@ class TeacherViewController{
     async update(req,res,next){
         try {
             await teacherService.updateTeacher(req.params.id, req.body);
-            res.redirect("pages/teachers");
+            res.redirect("/teachers");
         } catch (err) {
             next(err);
         }
@@ -68,7 +68,7 @@ class TeacherViewController{
     async delete(req,res,next){
         try {
             await teacherService.deleteTeacher(req.params.id);
-            res.redirect("pages/teachers");
+            res.redirect("/teachers");
         } catch (err) {
             next(err);
         }
