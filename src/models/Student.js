@@ -13,7 +13,10 @@ const StudentSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    school:String,
+    school:{
+        type:String,
+        required:true
+    },
     grade:String,
     createdAt: {
         type: Date,
