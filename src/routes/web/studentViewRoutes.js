@@ -9,7 +9,7 @@ studentViewRouter.post("/",studentViewController.store);
 
 studentViewRouter.get("/:id",studentViewController.detail);
 studentViewRouter.get("/edit/:id",studentViewController.edit);
-studentViewRouter.put("/:id",studentViewController.update);
-studentViewRouter.delete("/:id",studentViewController.delete);
+studentViewRouter.post("/edit/:id",studentViewController.update);
+studentViewRouter.post("/delete/:id",studentViewController.delete);
 
 export default studentViewRouter;

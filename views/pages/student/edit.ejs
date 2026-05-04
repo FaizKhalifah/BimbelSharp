@@ -1,0 +1,15 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/formPageStyle.css">
+<h2>Edit Student</h2>
+
+<div class="formContainer">
+    <form action="/students/edit/<%= student._id %>" method="POST">
+        <h1><%= student._id %></h1>
+        <input type="text" name="name" value="<%= student.name %>">
+        <input type="text" name="phone" value="<%= student.phone %>">
+        <input type="email" name="email" value="<%= student.email %>">
+        <input type="text" name="school" value="<%= student.school %>">
+        <input type="text" name="grade" value="<%= student.grade %>">
+        <button type="submit">Update</button>
+    </form>
+</div>

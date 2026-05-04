@@ -1,0 +1,13 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/detailPageStyle.css">
+<h2>Detail Student</h2>
+
+<div class="detailContainer">
+    <p>Nama: <%= student.name %></p>
+    <p>Nomor telepon: <%= student.phone %></p>
+    <p>Email: <%= student.email %></p>
+    <p>Asal sekolah: <%= student.school %></p>
+    <p>Nilai: <%= student.grade %></p>
+</div>
+
+<a href="/students" class="returnLink">Kembali</a>
