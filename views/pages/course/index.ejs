@@ -1,0 +1,35 @@
+<% layout('../views/layouts/mainLayout') %>
+<link rel="stylesheet" href="/css/pageContentStyle.css">
+<h2>Courses List</h2>
+
+<a href="/courses/create" class="createButton">Tambah Course</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nama Kelas</th>
+            <th>Kode</th>
+            <th>Guru Pengajar</th>
+            <th>Daftar Murid</th>
+            <th>Daftar nilai</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% courses.forEach(c => { %>
+            <tr>
+                <td><%= c.name %></td>
+                <td><%= c.code %></td>
+                <td><%= c.teacher %></td>
+                <td><%= c.students %></td>
+                <td><%= c.finalGrades %></td>
+                <td>
+                    <a href="/courses/<%= c._id %>" class="detailButton">Detail</a>
+                    <a href="/courses/edit/<%= c._id %>" class="editButton">Edit</a>
+                    <form action="/courses/delete/<%= c._id %>" method="POST" style="display:inline;">
+                        <button type="submit">Hapus</button>
+                    </form>
+                </td>
+            </tr>
+        <% }) %>
+    </tbody>
+</table>
