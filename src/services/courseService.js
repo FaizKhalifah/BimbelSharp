@@ -28,15 +28,17 @@ class CourseService{
         
     }
 
-    async getAllCourse({page,limit}){
-        const skip = (page - 1) * limit;
-        const courses = await this.courseRepository.getAllWithPagination(skip,limit)
-        return formateData(
-            {
-                page,limit,data:courses
-            }
-        );
-    }
+    async getAllCourse({ page = 1, limit = 10 } = {}) {
+    const skip = (page - 1) * limit;
+
+    const courses = await this.courseRepository.getAllWithPagination(skip, limit);
+
+    return formateData({
+        page,
+        limit,
+        data: courses
+    });
+}
 
     async getCourseById(id){
         const course = await this.courseRepository.findById(id);

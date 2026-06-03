@@ -4,11 +4,16 @@ class CourseViewController{
 
     async index(req,res){
         try{
-            const result = await courseService.getAllCourse();
+            const result = await courseService.getAllCourse({
+                page: 1,
+                limit: 20
+            });
             res.render("pages/course/index",{
                 title:"Course List",
-                courses:result.data
-            })
+                courses: result.data.data,
+                page: result.data.page,
+                limit: result.data.limit
+            });
         }
         catch (err) {
             next(err);

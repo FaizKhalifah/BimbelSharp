@@ -6,22 +6,25 @@
 
 <table>
     <thead>
-        <tr>
-            <th>Nama Kelas</th>
-            <th>Kode</th>
-            <th>Guru Pengajar</th>
-            <th>Daftar Murid</th>
-            <th>Daftar nilai</th>
-        </tr>
+    <tr>
+        <th>Nama Kelas</th>
+        <th>Kode</th>
+        <th>Guru</th>
+        <th>Jumlah Siswa</th>
+        <th>Aksi</th>
+    </tr>
     </thead>
     <tbody>
         <% courses.forEach(c => { %>
             <tr>
                 <td><%= c.name %></td>
                 <td><%= c.code %></td>
-                <td><%= c.teacher %></td>
-                <td><%= c.students %></td>
-                <td><%= c.finalGrades %></td>
+                <td><%= c.teacher?.name || '-' %></td>
+                <td>
+                    <% c.students.forEach(student => { %>
+                        <div><%= student.name %></div>
+                    <% }) %>
+                </td>
                 <td>
                     <a href="/courses/<%= c._id %>" class="detailButton">Detail</a>
                     <a href="/courses/edit/<%= c._id %>" class="editButton">Edit</a>
