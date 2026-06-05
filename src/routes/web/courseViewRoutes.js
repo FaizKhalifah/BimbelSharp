@@ -1,5 +1,5 @@
 import express from "express";
-import courseViewController from "../../controllers/web/courseViewController";
+import courseViewController from "../../controllers/web/courseViewController.js";
 
 const courseViewRouter = express.Router();
 

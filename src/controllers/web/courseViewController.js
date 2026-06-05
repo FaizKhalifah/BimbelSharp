@@ -1,4 +1,5 @@
 import courseService from "../../services/courseService.js";
+import TeacherService from "../../services/TeacherService.js";
 
 class CourseViewController{
 
@@ -22,7 +23,15 @@ class CourseViewController{
     }
 
     async create(req,res){
-        res.render("pages/course/create", { title: "Add Course" });
+        try{
+            const teachers = await TeacherService.getAllTeachers();
+            res.render("pages/course/create", 
+                { title: "Add Course", 
+                teachers:teachers.data
+                });
+        }catch(err) {
+            next(err);
+        }
     }
 
     async store(req,res){

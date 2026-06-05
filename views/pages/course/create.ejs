@@ -1,0 +1,47 @@
+<% layout('../views/layouts/mainLayout') %>
+
+<link rel="stylesheet" href="/css/formPageStyle.css">
+
+<h2>Tambah Course</h2>
+
+<div class="formContainer">
+
+<form action="/courses" method="POST">
+
+    <input
+        type="text"
+        name="name"
+        placeholder="Nama Course"
+        required
+    >
+
+    <input
+        type="text"
+        name="code"
+        placeholder="Kode Course"
+        required
+    >
+
+    <select name="teacher" required>
+
+        <option value="">
+            Pilih Guru
+        </option>
+
+        <% teachers.forEach(teacher => { %>
+
+            <option value="<%= teacher._id %>">
+                <%= teacher.name %>
+            </option>
+
+        <% }) %>
+
+    </select>
+
+    <button type="submit">
+        Simpan
+    </button>
+
+</form>
+
+</div>
