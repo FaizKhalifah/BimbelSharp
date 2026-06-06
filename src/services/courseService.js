@@ -77,7 +77,9 @@ class CourseService{
             throw new BadRequestError("student not found");
         }
 
-        const isEnrolled = course.students.include(studentID);
+        const isEnrolled = course.students.some(
+            id => id.toString() === studentID.toString()
+        );
         if(isEnrolled){
             throw new ConflictError("Student already enrolled");
         }
@@ -106,7 +108,7 @@ class CourseService{
         }
 
         const studentIndex  = course.students.indexOf(studentID);
-        course.students.slice(studentIndex,studentIndex);
+        course.students.splice(studentIndex,1);
         await course.save();
         return formateData(course);
 

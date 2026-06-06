@@ -1,5 +1,6 @@
 import courseService from "../../services/courseService.js";
 import TeacherService from "../../services/TeacherService.js";
+import StudentService from "../../services/StudentService.js";
 
 class CourseViewController{
 
@@ -46,11 +47,17 @@ class CourseViewController{
 
     async detail(req,res){
         try{
+            const course = await courseService.getCourseDetail(req.params.id);
+            const students = await StudentService.getAllStudent();
             const result = await courseService.getCourseById(req.params.id)
-            res.render("pages/course/detail", {
-                title: "Detail Course",
-                course: result.data
-            })
+             res.render(
+                "pages/course/detail",
+                {
+                    title: "Detail Course",
+                    course: course.data,
+                    students: students.data
+                }
+            );
         }catch (err) {
             next(err);
         }
