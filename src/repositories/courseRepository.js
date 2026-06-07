@@ -14,13 +14,16 @@ class CourseRepository extends BaseRepository{
         return this.model.findById(id).populate("teacher").populate("students");
     }
 
+    
     async getAllWithPagination(skip, limit) {
         return this.model
-            .find()
-            .skip(skip)
-            .limit(limit)
-            .populate("teacher", "name")
-            .populate("students", "name");
+        .find()
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit)
+        .populate("teacher", "name")
+        .populate("students", "name")
+        .lean();
     }
 }
 

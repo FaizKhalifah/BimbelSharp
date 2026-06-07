@@ -28,15 +28,17 @@ class CourseService{
         
     }
 
-    async getAllCourse({page,limit}){
-        const skip = (page - 1) * limit;
-        const courses = await this.courseRepository.getAllWithPagination(skip,limit)
-        return formateData(
-            {
-                page,limit,data:courses
-            }
-        );
-    }
+    async getAllCourse({ page = 1, limit = 10 } = {}) {
+    const skip = (page - 1) * limit;
+
+    const courses = await this.courseRepository.getAllWithPagination(skip, limit);
+
+    return formateData({
+        page,
+        limit,
+        data: courses
+    });
+}
 
     async getCourseById(id){
         const course = await this.courseRepository.findById(id);
@@ -66,16 +68,19 @@ class CourseService{
 
     async enrollStudent(courseID,studentID){
         const course = await this.courseRepository.findById(courseID);
+        console.log("Memasuki service enroll student");
         if(!course){
             throw new BadRequestError("Course not found");
         }
-
+        console.log("Student ID adalah : ", studentID);
         const student= await this.studentRepository.findById(studentID);
         if(!student){
             throw new BadRequestError("student not found");
         }
 
-        const isEnrolled = course.students.include(studentID);
+        const isEnrolled = course.students.some(
+            id => id.toString() === studentID.toString()
+        );
         if(isEnrolled){
             throw new ConflictError("Student already enrolled");
         }
@@ -97,14 +102,13 @@ class CourseService{
         if(!student){
             throw new BadRequestError("student not found");
         }
-
-        const isEnrolled = course.students.include(studentID);
+        const isEnrolled = course.students.includes(studentID);
         if(!isEnrolled){
             throw new BadRequestError("Student not enrolled in this class");
         }
 
         const studentIndex  = course.students.indexOf(studentID);
-        course.students.slice(studentIndex,studentIndex);
+        course.students.splice(studentIndex,1);
         await course.save();
         return formateData(course);
 
