@@ -4,7 +4,7 @@ import StudentService from "../../services/StudentService.js";
 
 class CourseViewController{
 
-    async index(req,res){
+    async index(req,res,next){
         try{
             const result = await courseService.getAllCourse({
                 page: 1,
@@ -23,7 +23,7 @@ class CourseViewController{
 
     }
 
-    async create(req,res){
+    async create(req,res,next){
         try{
             const teachers = await TeacherService.getAllTeachers();
             res.render("pages/course/create", 
@@ -35,7 +35,7 @@ class CourseViewController{
         }
     }
 
-    async store(req,res){
+    async store(req,res,next){
         try{
             await courseService.createCourse(req.body);
             res.redirect("/courses");
@@ -45,7 +45,7 @@ class CourseViewController{
         }
     }
 
-    async detail(req,res){
+    async detail(req,res,next){
         try{
             const course = await courseService.getCourseDetail(req.params.id);
             const students = await StudentService.getAllStudent();
@@ -63,7 +63,7 @@ class CourseViewController{
         }
     }
 
-    async edit(req,res){
+    async edit(req,res,next){
         try{
             const result = await courseService.getCourseById(req.params.id);
             
@@ -79,7 +79,7 @@ class CourseViewController{
 
     }
 
-    async update(req,res){
+    async update(req,res,next){
         try{
             await courseService.updateCourse(req.params.id,req.body);
             res.redirect("/courses")
@@ -89,10 +89,38 @@ class CourseViewController{
         }
     }
 
-    async delete(req,res){
+    async delete(req,res,next){
         try{
             await courseService.deleteCourse(req.params.id);
             res.redirect("/courses")
+        }
+        catch (err) {
+            next(err);
+        }
+    }
+
+    async enrollStudent(req,res,next){
+        try{
+            const courseID = req.params.id;
+            const studentID = req.body.studentID;
+            await courseService.enrollStudent(courseID,studentID);
+            res.redirect(
+            `/courses/${courseID}`
+            );
+        }
+        catch (err) {
+            next(err);
+        }
+    }
+
+    async removeStudent(req,res,next){
+        try{
+            const courseID = req.params.id;
+            const studentID = req.body.studentID;
+            await courseService.removeStudent(courseID,studentID);
+            res.redirect(
+            `/courses/${courseID}`
+            );
         }
         catch (err) {
             next(err);
