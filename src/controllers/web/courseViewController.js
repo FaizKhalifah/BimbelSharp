@@ -102,7 +102,7 @@ class CourseViewController{
     async enrollStudent(req,res,next){
         try{
             const courseID = req.params.id;
-            const studentID = req.body.studentID;
+            const studentID = req.body.studentId;
             await courseService.enrollStudent(courseID,studentID);
             res.redirect(
             `/courses/${courseID}`
@@ -116,7 +116,7 @@ class CourseViewController{
     async removeStudent(req,res,next){
         try{
             const courseID = req.params.id;
-            const studentID = req.body.studentID;
+            const studentID = req.params.studentId;
             await courseService.removeStudent(courseID,studentID);
             res.redirect(
             `/courses/${courseID}`

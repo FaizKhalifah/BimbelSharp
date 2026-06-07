@@ -1,0 +1,114 @@
+<% layout('../views/layouts/mainLayout') %>
+
+<link rel="stylesheet" href="/css/courseDetailStyle.css">
+
+<h2><%= course.name %></h2>
+
+<div class="courseInfo">
+
+    <p>
+        <strong>Kode:</strong>
+        <%= course.code %>
+    </p>
+
+    <p>
+        <strong>Guru:</strong>
+        <%= course.teacher?.name %>
+    </p>
+
+</div>
+
+<div class="enrollCard">
+
+    <h3>Tambah Student</h3>
+
+    <form
+        class="enrollForm"
+        action="/courses/<%= course._id %>/students"
+        method="POST"
+    >
+
+        <select
+            name="studentId"
+            required
+        >
+
+            <option value="">
+                Pilih Student
+            </option>
+
+            <% students.forEach(student => { %>
+
+                <option
+                    value="<%= student._id %>"
+                >
+                    <%= student.name %>
+                </option>
+
+            <% }) %>
+
+        </select>
+
+        <button class="submitButton" type="submit">
+            Tambah
+        </button>
+
+    </form>
+
+</div>
+
+<div class="studentCard">
+
+<h3>Daftar Student</h3>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    <% course.students.forEach(student => { %>
+
+        <tr>
+
+            <td>
+                <%= student.name %>
+            </td>
+
+            <td>
+                <%= student.email %>
+            </td>
+
+            <td>
+
+                <form
+                    action="/courses/<%= course._id %>/students/<%= student._id %>/delete"
+                    method="POST"
+                >
+
+                    <button
+                        class="deleteButton"
+                        type="submit"
+                    >
+                        Keluarkan
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+    <% }) %>
+
+    </tbody>
+
+</table>
+
+</div>

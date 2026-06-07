@@ -12,4 +12,7 @@ courseViewRouter.get("/edit/:id",courseViewController.edit);
 courseViewRouter.post("/edit/:id",courseViewController.update);
 courseViewRouter.post("/delete/:id",courseViewController.delete);
 
+courseViewRouter.post("/:id/students",courseViewController.enrollStudent);
+courseViewRouter.post("/:id/students/:studentId/delete",courseViewController.removeStudent);
+
 export default courseViewRouter;

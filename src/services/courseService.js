@@ -68,10 +68,11 @@ class CourseService{
 
     async enrollStudent(courseID,studentID){
         const course = await this.courseRepository.findById(courseID);
+        console.log("Memasuki service enroll student");
         if(!course){
             throw new BadRequestError("Course not found");
         }
-
+        console.log("Student ID adalah : ", studentID);
         const student= await this.studentRepository.findById(studentID);
         if(!student){
             throw new BadRequestError("student not found");
@@ -101,8 +102,7 @@ class CourseService{
         if(!student){
             throw new BadRequestError("student not found");
         }
-
-        const isEnrolled = course.students.include(studentID);
+        const isEnrolled = course.students.includes(studentID);
         if(!isEnrolled){
             throw new BadRequestError("Student not enrolled in this class");
         }
