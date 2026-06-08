@@ -4,7 +4,6 @@
 
 <div class="formContainer">
     <form action="/students/edit/<%= student._id %>" method="POST">
-        <h1><%= student._id %></h1>
         <input type="text" name="name" value="<%= student.name %>">
         <input type="text" name="phone" value="<%= student.phone %>">
         <input type="email" name="email" value="<%= student.email %>">

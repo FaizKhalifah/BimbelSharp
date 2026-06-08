@@ -66,10 +66,11 @@ class CourseViewController{
     async edit(req,res,next){
         try{
             const result = await courseService.getCourseById(req.params.id);
-            
+            const teachers = await TeacherService.getAllTeachers();
             res.render("pages/course/edit", {
                 title: "Edit Course",
-                course: result.data
+                course: result.data,
+                teachers:teachers.data
             });
             
         }
