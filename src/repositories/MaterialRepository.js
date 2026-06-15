@@ -14,6 +14,18 @@ class MaterialRepository extends BaseRepository{
         .limit(limit)
         .lean();
     }
+
+    async findByCourse(courseId){
+        return this.model
+            .find({ course: courseId })
+            .sort({ createdAt: -1 });
+    }
+    
+    async findWithCourse(id){
+        return this.model
+            .findById(id)
+            .populate("course","name code");
+    }   
 }
 
 export default MaterialRepository;

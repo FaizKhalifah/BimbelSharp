@@ -8,16 +8,16 @@ const {ConflictError, BadRequestError, InternalError} = appErrors;
 
 class MaterialService{
     constructor(){
-        this.MaterialRepository = new MaterialRepository();
-        this.CourseRepository = new CourseRepository();
+        this.materialRepository = new MaterialRepository();
+        this.courseRepository = new CourseRepository();
     }
 
     async createMaterial(materialData){
-        const isCourseAvailable = await this.CourseRepository.findById(materialData.course);
+        const isCourseAvailable = await this.courseRepository.findById(materialData.course);
         if(!isCourseAvailable){
             throw new BadRequestError("Course not found");
         }
-        const createMaterialResult = await this.MaterialRepository.create(materialData);
+        const createMaterialResult = await this.materialRepository.create(materialData);
         return formateData(createMaterialResult);
 
     }
@@ -25,7 +25,7 @@ class MaterialService{
     async getAllMaterial({ page = 1, limit = 10 } = {}){
         const skip = (page - 1) * limit;
 
-        const materials = await this.MaterialRepository.getAllWithPagination(skip,limit);
+        const materials = await this.materialRepository.getAllWithPagination(skip,limit);
 
         return formateData({
             page,
@@ -36,7 +36,7 @@ class MaterialService{
     }
 
     async getMaterialById(id){
-        const material = await this.MaterialRepository.findById(id);
+        const material = await this.materialRepository.findById(id);
         if(!material){
             throw new BadRequestError("Material not found");
         }
@@ -44,20 +44,20 @@ class MaterialService{
     }
 
     async updateMaterial(id,updateData){
-        const isAvailable = await this.MaterialRepository.findById(id);
+        const isAvailable = await this.materialRepository.findById(id);
         if(!isAvailable){
              throw new BadRequestError("Material not found");
         }
-        const updateResult = await this.MaterialRepository(id,updateData);
+        const updateResult = await this.materialRepository.update(id,updateData);
         return formateData(updateResult);
     }
 
     async deleteMaterial(id){
-        const isAvailable = await this.MaterialRepository.findById(id);
+        const isAvailable = await this.materialRepository.findById(id);
         if(!isAvailable){
              throw new BadRequestError("Material not found");
         }
-        const deleteResult = await this.MaterialRepository.delete(id);
+        const deleteResult = await this.materialRepository.delete(id);
         return formateData(deleteResult);
     }
 
