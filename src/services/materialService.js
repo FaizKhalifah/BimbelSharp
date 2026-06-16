@@ -12,14 +12,24 @@ class MaterialService{
         this.courseRepository = new CourseRepository();
     }
 
-    async createMaterial(materialData){
-        const isCourseAvailable = await this.courseRepository.findById(materialData.course);
-        if(!isCourseAvailable){
+    async createMaterial(courseId, data) {
+
+        const course =
+            await this.courseRepository.findById(courseId);
+
+        if (!course) {
             throw new BadRequestError("Course not found");
         }
-        const createMaterialResult = await this.materialRepository.create(materialData);
-        return formateData(createMaterialResult);
 
+        const materialData = {
+            ...data,
+            course: courseId
+        };
+
+        const material =
+            await this.materialRepository.create(materialData);
+
+        return formateData(material);
     }
 
     async getAllMaterial({ page = 1, limit = 10 } = {}){
@@ -59,6 +69,40 @@ class MaterialService{
         }
         const deleteResult = await this.materialRepository.delete(id);
         return formateData(deleteResult);
+    }
+
+    async getMaterialByCourse(courseId){
+
+        const course =
+            await this.courseRepository.findById(courseId);
+
+        if(!course){
+            throw new BadRequestError(
+                "Course not found"
+            );
+        }
+
+        const materials =
+            await this.materialRepository.findByCourse(
+                courseId
+            );
+
+        return formateData(materials);
+    }
+
+    async getMaterialDetail(id){
+
+        const material =
+            await this.materialRepository
+                .findWithCourse(id);
+
+        if(!material){
+            throw new BadRequestError(
+                "Material not found"
+            );
+        }
+
+        return formateData(material);
     }
 
 }
