@@ -15,10 +15,13 @@ class MaterialRepository extends BaseRepository{
         .lean();
     }
 
-    async findByCourse(courseId){
+    async findByCourse(courseId,skip,limit){
         return this.model
             .find({ course: courseId })
-            .sort({ createdAt: -1 });
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(limit)
+            .lean();
     }
     
     async findWithCourse(id){

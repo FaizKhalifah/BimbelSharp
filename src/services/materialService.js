@@ -71,8 +71,9 @@ class MaterialService{
         return formateData(deleteResult);
     }
 
-    async getMaterialByCourse(courseId){
+    async getMaterialByCourse(courseId, { page = 1, limit = 10 } = {}){
 
+        const skip = (page - 1) * limit;
         const course =
             await this.courseRepository.findById(courseId);
 
@@ -84,10 +85,14 @@ class MaterialService{
 
         const materials =
             await this.materialRepository.findByCourse(
-                courseId
+                courseId,skip,limit
             );
 
-        return formateData(materials);
+        return formateData({
+            page,
+            limit,
+            data:materials
+        });
     }
 
     async getMaterialDetail(id){
