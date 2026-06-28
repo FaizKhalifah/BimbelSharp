@@ -50,7 +50,7 @@ class CourseViewController{
             const course = await courseService.getCourseDetail(req.params.id);
             const students = await StudentService.getAllStudent();
             const result = await courseService.getCourseById(req.params.id)
-             res.render(
+            res.render(
                 "pages/course/detail",
                 {
                     title: "Detail Course",
@@ -66,10 +66,11 @@ class CourseViewController{
     async edit(req,res,next){
         try{
             const result = await courseService.getCourseById(req.params.id);
-            
+            const teachers = await TeacherService.getAllTeachers();
             res.render("pages/course/edit", {
                 title: "Edit Course",
-                course: result.data
+                course: result.data,
+                teachers:teachers.data
             });
             
         }
