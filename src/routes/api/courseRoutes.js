@@ -1,6 +1,7 @@
 import express from "express";
 import courseController from "../../controllers/api/courseController.js";
 
+
 const courseRouter = express.Router();
 
 courseRouter.get("/",courseController.getAll);

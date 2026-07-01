@@ -42,17 +42,27 @@ class MaterialViewController{
     }
 
     async detail(req,res,next){
-        res.render(
-            "pages/material/detail",
-                {
-                    title: "Detail Material"
-                }
+        try{
+            const material = await materialService.getMaterialById(req.params.id);
+            res.render(
+                "pages/material/detail",
+                    {
+                        title: "Detail Material",
+                        material:material.data
+                    }
             );
+        }
+         catch(err){
+            next(err);
+        }
+        
     }
     
     async edit(req,res,next){
         try{
-
+            res.render("pages/material/edit", {
+                title: "Edit Material",
+            });
         }
         catch(err){
             next(err);
